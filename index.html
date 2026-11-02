@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phishing URL Checker</title>
+  <meta name="description" content="Paste a URL and a Decision Tree model estimates whether it looks like phishing.">
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Phishing URL Checker</h1>
+      <button class="theme" id="theme" type="button" aria-label="Toggle dark mode">Theme</button>
+    </header>
+    <p class="sub">Paste a link and a Decision Tree model estimates whether it looks like phishing. The page is never opened or visited.</p>
+
+    <div class="card">
+      <form id="form" autocomplete="off">
+        <input type="text" id="url" name="url" inputmode="url" spellcheck="false" maxlength="2048"
+              placeholder="https://example.com/login" aria-label="URL to check" required>
+        <button class="go" id="go" type="submit">Check URL</button>
+      </form>
+      <div class="examples">
+        <span>Try:</span>
+        <button class="ex" type="button" data-u="https://en.wikipedia.org/wiki/Machine_learning">wikipedia</button>
+        <button class="ex" type="button" data-u="https://www.paypal.com/signin">paypal.com</button>
+        <button class="ex" type="button" data-u="http://paypal-verify-account.xyz/login">paypal-verify-account.xyz</button>
+        <button class="ex" type="button" data-u="http://192.168.45.7/bca/signin/index.html">IP address</button>
+        <button class="ex" type="button" data-u="http://www.google.com@update-account.xyz/confirm">@ trick</button>
+      </div>
+
+      <div id="error" class="error" role="alert" hidden></div>
+
+      <div id="result" aria-live="polite" hidden>
+        <div class="verdict" id="verdict">
+          <div class="icon" id="icon" aria-hidden="true"></div>
+          <div>
+            <h2 id="vtitle"></h2>
+            <p id="vtext"></p>
+          </div>
+        </div>
+
+        <div class="meter">
+          <div class="meter-label"><span>Phishing score</span><strong id="score"></strong></div>
+          <div class="bar" id="bar">
+            <span class="tick" id="tick"></span>
+            <span class="zone" style="left:20%">likely safe</span>
+            <span class="zone" style="left:50%">uncertain</span>
+            <span class="zone" style="left:80%">likely phishing</span>
+          </div>
+          <div class="meter-pad"></div>
+        </div>
+
+        <dl>
+          <dt>URL</dt><dd id="r-url"></dd>
+          <dt>Judged domain</dt><dd id="r-domain"></dd>
+        </dl>
+
+        <h3>Serious red flags</h3>
+        <div id="serious"></div>
+        <h3>Other observations</h3>
+        <div id="minor"></div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <p><strong>This is a learning project, not a security product.</strong> The model reads only the text of the URL's domain name (trained on the PhiUSIIL dataset; about 80% accuracy and 60% recall on held-out domains). It does not check page content, domain age, certificates, or blocklists. About 4 in 10 phishing domains are missed, so "LEGITIMATE" does not mean safe.</p>
+      <p>For real decisions use your browser's Safe Browsing protection, Google Safe Browsing, or VirusTotal.</p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
