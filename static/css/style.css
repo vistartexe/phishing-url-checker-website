@@ -1,87 +1,371 @@
+/* ==============================
+   1. COLOR VARIABLES (DARK MODE)
+============================== */
+
 :root {
---bg: #f6f7f9; --card: #ffffff; --ink: #14181f; --muted: #5d6675; --line: #dfe3e9;
---accent: #2b59c3; --accent-ink: #ffffff;
---ok: #17703e;      --ok-bg: #e6f5ec;
---bad: #b3261e;     --bad-bg: #fdecea;
---warn: #8a5300;    --warn-bg: #fff3dc;
---unk: #3d4a63;     --unk-bg: #e9edf5;
---radius: 14px;
+    --bg: #0f131a;
+    --card: #171c26;
+    --ink: #e8ebf1;
+    --muted: #9aa4b5;
+    --line: #2a3140;
+
+    --accent: #7ea2f5;
+    --accent-ink: #0f131a;
+
+    --ok: #6fd69a;
+    --ok-bg: #12301f;
+
+    --bad: #ff8d84;
+    --bad-bg: #3a1714;
+
+    --warn: #ffc56b;
+    --warn-bg: #36280e;
+
+    --unk: #b4c0da;
+    --unk-bg: #222b3d;
+
+    --radius: 14px;
 }
 
-@media (prefers-color-scheme: dark) {
-:root:not([data-theme="light"]) {
-    --bg: #0f131a; --card: #171c26; --ink: #e8ebf1; --muted: #9aa4b5; --line: #2a3140;
-    --accent: #7ea2f5; --accent-ink: #0f131a;
-    --ok: #6fd69a; --ok-bg: #12301f; --bad: #ff8d84; --bad-bg: #3a1714;
-    --warn: #ffc56b; --warn-bg: #36280e; --unk: #b4c0da; --unk-bg: #222b3d;
+
+/* ==============================
+   2. GENERAL STYLING
+============================== */
+
+* {
+    box-sizing: border-box;
 }
 
-}
-:root[data-theme="dark"] {
---bg: #0f131a; --card: #171c26; --ink: #e8ebf1; --muted: #9aa4b5; --line: #2a3140;
---accent: #7ea2f5; --accent-ink: #0f131a;
---ok: #6fd69a; --ok-bg: #12301f; --bad: #ff8d84; --bad-bg: #3a1714;
---warn: #ffc56b; --warn-bg: #36280e; --unk: #b4c0da; --unk-bg: #222b3d;
-}
-
-* { box-sizing: border-box; }
 body {
-margin: 0; background: var(--bg); color: var(--ink);
-font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
-.wrap { max-width: 720px; margin: 0 auto; padding: 32px 16px 56px; }
-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
-h1 { font-size: 1.6rem; line-height: 1.2; margin: 0; }
-.sub { color: var(--muted); margin: 6px 0 24px; }
-.theme { background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px;
-        padding: 6px 12px; cursor: pointer; font: inherit; font-size: .85rem; }
-.card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
-form { display: flex; gap: 10px; flex-wrap: wrap; }
-input[type=text] {
-flex: 1 1 260px; min-width: 0; padding: 12px 14px; font: inherit; color: var(--ink);
-background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
+.wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 16px 56px;
 }
-input[type=text]:focus-visible, button:focus-visible, .ex:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+header {
+    margin-bottom: 8px;
+}
+
+h1 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.sub {
+    color: var(--muted);
+    margin: 6px 0 24px;
+}
+
+
+/* ==============================
+   3. MAIN CARD & INPUT FORM
+============================== */
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+input[type="text"] {
+    flex: 1 1 260px;
+    min-width: 0;
+    padding: 12px 14px;
+    font: inherit;
+    color: var(--ink);
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+input[type="text"]:focus-visible,
+button:focus-visible,
+.ex:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
 button.go {
-padding: 12px 22px; font: inherit; font-weight: 600; border: 0; border-radius: 10px; cursor: pointer;
-background: var(--accent); color: var(--accent-ink);
+    padding: 12px 22px;
+    font: inherit;
+    font-weight: 600;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    background: var(--accent);
+    color: var(--accent-ink);
 }
-button.go[disabled] { opacity: .6; cursor: progress; }
-.examples { margin-top: 12px; font-size: .88rem; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; }
-.ex { background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 3px 10px;
-    cursor: pointer; font: inherit; font-size: .82rem; }
-.ex:hover { border-color: var(--accent); }
 
-#result { margin-top: 20px; }
-.verdict { border-radius: var(--radius); padding: 18px 20px; display: flex; gap: 14px; align-items: center; }
-.verdict .icon { font-size: 2rem; line-height: 1; }
-.verdict h2 { margin: 0; font-size: 1.5rem; letter-spacing: .02em; }
-.verdict p { margin: 2px 0 0; font-size: .95rem; }
-.v-LEGITIMATE { background: var(--ok-bg);   color: var(--ok); }
-.v-PHISHING   { background: var(--bad-bg);  color: var(--bad); }
-.v-SUSPICIOUS { background: var(--warn-bg); color: var(--warn); }
-.v-UNCERTAIN  { background: var(--unk-bg);  color: var(--unk); }
+button.go[disabled] {
+    opacity: 0.6;
+    cursor: progress;
+}
 
-.meter { margin: 18px 0 4px; }
-.meter-label { display: flex; justify-content: space-between; font-size: .88rem; color: var(--muted); margin-bottom: 6px; }
-.bar { position: relative; height: 12px; border-radius: 999px; background: linear-gradient(90deg, #3fae6b 0%, #e9c04a 50%, #d9534f 100%); }
-.bar .tick { position: absolute; top: -4px; width: 4px; height: 20px; border-radius: 2px; background: var(--ink); transform: translateX(-50%); }
-.bar .zone { position: absolute; top: 18px; font-size: .72rem; color: var(--muted); transform: translateX(-50%); white-space: nowrap; }
-.meter-pad { height: 22px; }
 
-dl { margin: 14px 0 0; display: grid; grid-template-columns: max-content 1fr; gap: 6px 14px; font-size: .92rem; }
-dt { color: var(--muted); }
-dd { margin: 0; word-break: break-all; }
+/* ==============================
+   4. EXAMPLE URL BUTTONS
+============================== */
 
-h3 { font-size: 1rem; margin: 20px 0 6px; }
-ul.flags { margin: 0; padding-left: 20px; }
-ul.flags li { margin: 4px 0; }
-ul.flags.serious li::marker { color: var(--bad); }
-.none { color: var(--muted); margin: 0; }
+.examples {
+    margin-top: 12px;
+    font-size: 0.88rem;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    align-items: center;
+}
 
-.error { margin-top: 16px; padding: 12px 14px; border-radius: 10px; background: var(--bad-bg); color: var(--bad); }
-.disclaimer { margin-top: 28px; font-size: .86rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
-.disclaimer p { margin: 0 0 8px; }
-[hidden] { display: none !important; }
-@media (max-width: 480px) { .wrap { padding-top: 20px; } h1 { font-size: 1.35rem; } button.go { width: 100%; } }
+.ex {
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    border-radius: 999px;
+    padding: 3px 10px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.82rem;
+}
+
+.ex:hover {
+    border-color: var(--accent);
+}
+
+
+/* ==============================
+   5. RESULT SECTION
+============================== */
+
+#result {
+    margin-top: 20px;
+}
+
+.verdict {
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.verdict .icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.verdict h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    letter-spacing: 0.02em;
+}
+
+.verdict p {
+    margin: 2px 0 0;
+    font-size: 0.95rem;
+}
+
+
+/* Prediction status colors */
+
+.v-LEGITIMATE {
+    background: var(--ok-bg);
+    color: var(--ok);
+}
+
+.v-PHISHING {
+    background: var(--bad-bg);
+    color: var(--bad);
+}
+
+.v-SUSPICIOUS {
+    background: var(--warn-bg);
+    color: var(--warn);
+}
+
+.v-UNCERTAIN {
+    background: var(--unk-bg);
+    color: var(--unk);
+}
+
+
+/* ==============================
+   6. PHISHING SCORE METER
+============================== */
+
+.meter {
+    margin: 18px 0 4px;
+}
+
+.meter-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+}
+
+.bar {
+    position: relative;
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        #3fae6b 0%,
+        #e9c04a 50%,
+        #d9534f 100%
+    );
+}
+
+.bar .tick {
+    position: absolute;
+    top: -4px;
+    width: 4px;
+    height: 20px;
+    border-radius: 2px;
+    background: var(--ink);
+    transform: translateX(-50%);
+}
+
+.bar .zone {
+    position: absolute;
+    top: 18px;
+    font-size: 0.72rem;
+    color: var(--muted);
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.meter-pad {
+    height: 22px;
+}
+
+
+/* ==============================
+   7. URL INFORMATION
+============================== */
+
+dl {
+    margin: 14px 0 0;
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 6px 14px;
+    font-size: 0.92rem;
+}
+
+dt {
+    color: var(--muted);
+}
+
+dd {
+    margin: 0;
+    word-break: break-all;
+}
+
+
+/* ==============================
+   8. WARNING FLAGS & OBSERVATIONS
+============================== */
+
+h3 {
+    font-size: 1rem;
+    margin: 20px 0 6px;
+}
+
+ul.flags {
+    margin: 0;
+    padding-left: 20px;
+}
+
+ul.flags li {
+    margin: 4px 0;
+}
+
+ul.flags.serious li::marker {
+    color: var(--bad);
+}
+
+.none {
+    color: var(--muted);
+    margin: 0;
+}
+
+
+/* ==============================
+   9. ERROR MESSAGE
+============================== */
+
+.error {
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: var(--bad-bg);
+    color: var(--bad);
+}
+
+
+/* ==============================
+   10. DISCLAIMER
+============================== */
+
+.disclaimer {
+    margin-top: 28px;
+    font-size: 0.86rem;
+    color: var(--muted);
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+}
+
+.disclaimer p {
+    margin: 0 0 8px;
+}
+
+
+/* ==============================
+   11. FOOTER
+============================== */
+
+footer {
+    border-top: 1px solid var(--line);
+    padding: 30px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+
+/* ==============================
+   12. UTILITY & RESPONSIVE
+============================== */
+
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 480px) {
+    .wrap {
+        padding-top: 20px;
+    }
+
+    h1 {
+        font-size: 1.35rem;
+    }
+
+    button.go {
+        width: 100%;
+    }
+}
