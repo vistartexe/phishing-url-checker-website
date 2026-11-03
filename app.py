@@ -5,9 +5,6 @@ Run locally:
     pip install -r requirements.txt
     python app.py                 # then open http://127.0.0.1:5000
 
-Run in production (example):
-    gunicorn -w 2 -b 0.0.0.0:8000 app:app
-
 Endpoints:
     GET  /            the web page
     POST /api/check   JSON {"url": "..."} -> JSON verdict
