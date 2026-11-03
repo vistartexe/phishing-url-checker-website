@@ -1,9 +1,6 @@
 """
 url_analyzer.py - turns a URL into features, runs the trained Decision Tree, returns a verdict.
 
-The feature code is the SAME as in the training notebook (phishing_url_decision_tree_colab.ipynb).
-If you retrain with different features, update this file to match, otherwise predictions are wrong.
-
 IMPORTANT: this module only reads the URL TEXT. It never opens the URL, so analysing a
 dangerous link cannot harm the server.
 """
